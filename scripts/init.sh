@@ -15,6 +15,7 @@ PROJECT_NAME=$1 # - projec-name
 PROJECT_DESC=$2 # - Project Description
 PROJECT_USER_NAME='Eloy Pineda'
 PROJECT_USER_MAIL='me@eloy.codes'
+PROJECT_VERSION='0.1.0'
 
 # check for mandatory argument
 # ===============================================
@@ -94,7 +95,7 @@ echo "$TEMPLATE_STYLELINT" > .stylelintrc.yml
 npm init -y \
   --init-author-name $PROJECT_USER_NAME \
   --init-author-email $PROJECT_USER_MAIL \
-  --init-license MIT --init-version 0.1.0
+  --init-license MIT --init-version $PROJECT_VERSION
 
 # git
 # ===============================================
