@@ -73,7 +73,7 @@ EOF
 )
 # ...............................................
 
-# .gitigonre ....................................
+# .gitignore ....................................
 TEMPLATE_GITIGNORE=$(cat  << EOF
 .DS_Store
 node_modules
@@ -99,7 +99,7 @@ npm init -y \
 # git
 # ===============================================
 git init
-echo "$TEMPLATE_GITIGNORE" > .gitigonre
+echo "$TEMPLATE_GITIGNORE" > .gitignore
 git config user.email $PROJECT_USER_MAIL
 git config user.name $PROJECT_USER_NAME
 git config user.signingkey $PROJECT_USER_MAIL
