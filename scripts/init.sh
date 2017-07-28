@@ -105,5 +105,11 @@ git config user.email $PROJECT_USER_MAIL
 git config user.name $PROJECT_USER_NAME
 git config user.signingkey $PROJECT_USER_MAIL
 git config commit.gpgsign true
+# git: initial commit
 git add .
 git commit --no-edit -m 'Initial Commit'
+
+# successful finish
+# ===============================================
+printf "\nProject $PROJECT_NAME created.\n"
+exit 1
