@@ -4,13 +4,14 @@
 # CHANGELOG:
 #
 # * 22.06.2017 - v0.1.0  - initial version
+# * 28.07.2017 - v0.2.0  - add js and css linters
 #
 # ===============================================
 
 
 # variables
 # ===============================================
-version='0.1.0'
+version='0.2.0'
 PROJECT_NAME=$1 # - projec-name
 PROJECT_DESC=$2 # - Project Description
 PROJECT_USER_NAME='Eloy Pineda'
@@ -108,6 +109,43 @@ git config commit.gpgsign true
 # git: initial commit
 git add .
 git commit --no-edit -m 'Initial Commit'
+
+# install linters
+# ===============================================
+printf "\nInstalling js and css linters...\n"
+npm install --save-dev standard stylelint stylelint-config-standard
+# check node is installed
+if hash node 2>/dev/null; then
+  echo "Adding linting scripts to package.json..."
+else
+  echo >&2 ">> Error: node required but not installed."
+  exit 1
+fi
+# run a short javascript with node to add npm scripts to package.json
+node << EOF
+const fs = require('fs')
+try {
+  const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
+  const pkgScripts = pkg.scripts || {}
+  // add new js and css linting scripts
+  pkgScripts['lint'] = 'npm run lint:js && npm run lint:css'
+  pkgScripts['lint:css'] = 'stylelint src/**/*.css'
+  pkgScripts['lint:js'] = 'standard'
+  // sort npm scripts keys
+  pkg.scripts = {}
+  Object.keys(pkgScripts)
+    .sort()
+    .forEach(key => pkg.scripts[key] = pkgScripts[key])
+  fs.writeFileSync('package.json', \`\${JSON.stringify(pkg, null, 2)}\n\`)
+} catch (e) {
+  console.error('>> ', e.stack)
+}
+EOF
+# git: commit linters
+git add package.json
+git commit --no-edit -m 'chore: add js and css linters'
+git add package-lock.json
+git commit --no-edit -m 'chore: add package-lock.json'
 
 # successful finish
 # ===============================================
