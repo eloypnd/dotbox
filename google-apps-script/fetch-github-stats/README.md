@@ -65,6 +65,17 @@ As far as there is no simple way to push source code to Google Apps Script there
 
 If the process was done correctly you are authenticated now with Github API and you ca start fetching repositries data.
 
+#### Add function trigger
+
+We need to setup a trigger to run our `onEditCell` function each time a cell is edited on the Spreadsheet.
+
+- Go to `Edit > Current project's triggers`
+- Click on `Add a new trigger`
+- In the 1st dropdown choose `onEditCell`
+- In the 2nd dropdown choose `From Spreadsheet`
+- In the 3rd dropdown choose `onEdit`
+- Click `Save` and you are done :)
+
 ## Usage
 
 Simply paste a Github HTTP URL in the first column of any row. Wait for the script to fetch the data and fill the rest of the columns.
