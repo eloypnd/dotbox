@@ -9,3 +9,7 @@ A place to drop anything I might find useful, code wise.
 ## apple scripts
 
 - [copy chrome tabs as markdown list](./scripts/chrometabs2markdown.scpt)
+
+## Google Apps Scripts
+
+- [Google Spreadsheeet for Open source projects comparisons](./scripts/fetch-github-data)
